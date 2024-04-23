@@ -22,7 +22,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
-// This is a Group (Its ) of My Program and o number of version
+// This is a Group (name reference of organization or project) of My Program and o number of version
 group = 'br.com.spedison'
 version = '1.0-SNAPSHOT'
 
@@ -32,6 +32,7 @@ repositories {
     mavenCentral()
 }
 
+// This Snippet code get name of SOM and put it platform variable.
 def currentOS = org.gradle.internal.os.OperatingSystem.current()
 def platform
 if (currentOS.isWindows()) {
@@ -42,7 +43,7 @@ if (currentOS.isWindows()) {
     platform = 'mac'
 }
 
-// Configure JavaFX plugin and set version and modules. 
+// Configure JavaFX plugin and set version and used modules. 
 // We are used only controls module, but add more javafx modules.
 javafx {
     version = "20"
@@ -51,6 +52,7 @@ javafx {
 
 // Add all dependeces (libraries and files) used by project
 // In this case, used javafx, java commons and test unit library
+// All itens makerd with implementation will be added to package to distribution. (Zip or Tar)
 dependencies {
     implementation "org.openjfx:javafx-base:22:${platform}"
     implementation "org.openjfx:javafx-graphics:22:${platform}"
@@ -159,6 +161,22 @@ task executeHello(type: Exec) {
 }
 */
 
+// Added example task to uncompresse ziped to test package.
+// To execute this in 2 steps.
+// ** 1) gradle distZip
+// ** 2) gradle unzip
+// ** 3) Go to buildDir/unpacked/unziped/
+// ** 4) In Linux
+//           ./<<project name-VERSION>>/bin/<<project name>>
+//       In Windows
+//           ./<<project name-VERSION>>/bin/<<project name>>.bat
+task unzip(type: Copy) {
+    def zipFile = file("${buildDir}/distributions/${project.name}-${version}.zip")
+    def outputDir = file("${buildDir}/unpacked/unziped")
+
+    from zipTree(zipFile)
+    into outputDir
+}
 
 /* 
  *  END OF FILE ;-) Have Good Fun
