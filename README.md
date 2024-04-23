@@ -60,23 +60,23 @@ Generate build using new APIs and behavior (some features may change in the next
 ## Creade Directory to put your source code.
 
 ### In linux or unix like with bash shell.
-`
-   mkdir -p  ./src/{main,test}/{java,resources}/<your package base>
-
-`
+```
+   mkdir -p  ./src/{main,test}/{java,resources}/<<your package base>>
+   mkdir -p  ./src/{main,test}/resources/
+```
 For example: 
  * My Package is br.com.spedison. (My Domain in reverse order : spedison.com.br) 
  * My command is:
-`
+```
    mkdir -p  ./src/{main,test}/java/br/com/spedison/
    mkdir -p  ./src/{main,test}/resources
-`
+```
 
 ### in windows
 
 Using the same package br.com.spedison :
 
-`
+```
   mkdir ./src
   mkdir ./src/main
   mkdir ./src/main/java
@@ -90,7 +90,7 @@ Using the same package br.com.spedison :
   mkdir ./src/test/java/br/com
   mkdir ./src/test/java/br/com/spedison
   mkdir ./src/test/resources
-`
+```
 
 ## Read the build.gradle file, in this repository, because he have more examples and details in comments.
 
