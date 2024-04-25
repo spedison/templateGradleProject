@@ -22,6 +22,18 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
+// Force use JDK 21 to use.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+// Compile with all options of JDK 21.
+compileJava {
+    options.release = 21
+}
+
 // This is a Group (name reference of organization or project) of My Program and o number of version
 group = 'br.com.spedison'
 version = '1.0-SNAPSHOT'
